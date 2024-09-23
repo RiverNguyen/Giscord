@@ -59,6 +59,7 @@ export const InitialModal = () => {
       console.log("[SERVER_CREATE]", error);
     }
   };
+
   return (
     <Dialog open>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
