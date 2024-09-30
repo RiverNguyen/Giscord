@@ -1,7 +1,7 @@
 "use client";
 
+import { MemberRole } from "@prisma/client";
 import axios from "axios";
-import qs from "query-string";
 import {
   Check,
   Loader2,
@@ -12,8 +12,8 @@ import {
   ShieldQuestion,
   UserX,
 } from "lucide-react";
+import qs from "query-string";
 import { useState } from "react";
-import { MemberRole } from "@prisma/client";
 
 import {
   Dialog,
@@ -57,6 +57,29 @@ export const MembersModal = () => {
   const isModalOpen = isOpen && type === "members";
   const { server } = data as { server: ServerWithMembersWithProfile };
 
+  const onKick = async (memberId: string) => {
+    try {
+      setLoadingId(memberId);
+
+      const url = qs.stringifyUrl({
+        url: `/api/members/${memberId}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+
+      const res = await axios.delete(url);
+
+      router.refresh();
+
+      onOpen("members", { server: res.data });
+    } catch (error) {
+      console.log("[KICK ERROR]", error);
+    } finally {
+      setLoadingId("");
+    }
+  };
+
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
       setLoadingId(memberId);
@@ -64,7 +87,6 @@ export const MembersModal = () => {
         url: `/api/members/${memberId}`,
         query: {
           serverId: server?.id,
-          memberId,
         },
       });
 
@@ -140,7 +162,10 @@ export const MembersModal = () => {
                           </DropdownMenuPortal>
                         </DropdownMenuSub>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-rose-500">
+                        <DropdownMenuItem
+                          onClick={() => onKick(member.id)}
+                          className="text-rose-500"
+                        >
                           <UserX className="h-4 w-4 mr-2" />
                           Kick
                         </DropdownMenuItem>
