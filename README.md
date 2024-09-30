@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Giscord
 
-## Getting Started
+Giscord là một dự án clone của Discord, được xây dựng bằng **Next.js** kết hợp với các công nghệ hiện đại như **Shadcn/UI**, **Socket.io**, **Clerk**, **Prisma**, và **MySQL**. Dự án này mang đến trải nghiệm trò chuyện theo thời gian thực với khả năng quản lý người dùng, kênh và tin nhắn.
 
-First, run the development server:
+## Mục tiêu
+
+- Tạo ra một nền tảng giao tiếp theo thời gian thực, mô phỏng chức năng của Discord.
+- Cung cấp các tính năng như quản lý kênh, người dùng, và trò chuyện nhóm.
+- Xây dựng trải nghiệm người dùng mượt mà, nhanh chóng và bảo mật.
+
+## Tính năng
+
+- **Đăng ký/Đăng nhập**: Sử dụng **Clerk** để xác thực và quản lý người dùng một cách an toàn.
+- **Trò chuyện thời gian thực**: Sử dụng **Socket.io** để gửi và nhận tin nhắn trong thời gian thực giữa các người dùng và kênh.
+- **Quản lý kênh**: Người dùng có thể tạo, chỉnh sửa và quản lý kênh trò chuyện của riêng mình.
+- **Tương tác trực quan**: Sử dụng **Shadcn/UI** để xây dựng giao diện người dùng hiện đại và tối ưu.
+- **Dữ liệu người dùng**: Quản lý người dùng và các dữ liệu liên quan thông qua **Prisma** và cơ sở dữ liệu **MySQL**.
+
+## Công nghệ sử dụng
+
+- **Next.js**: Framework React cho việc xây dựng ứng dụng web hiện đại.
+- **Shadcn/UI**: Thư viện UI cho thiết kế giao diện mượt mà, tối ưu trải nghiệm người dùng.
+- **Socket.io**: Thư viện hỗ trợ giao tiếp thời gian thực thông qua WebSockets.
+- **Clerk**: Giải pháp toàn diện cho việc xác thực và quản lý người dùng.
+- **Prisma**: ORM (Object-Relational Mapping) hỗ trợ kết nối và tương tác với cơ sở dữ liệu MySQL một cách dễ dàng.
+- **MySQL**: Hệ quản trị cơ sở dữ liệu quan hệ (RDBMS) lưu trữ dữ liệu người dùng, tin nhắn, kênh, v.v.
+
+## Cấu trúc dự án
+
+```bash
+├── prisma/         # Cấu hình Prisma và migration cơ sở dữ liệu
+├── public/         # Các file tĩnh như hình ảnh, font chữ
+├── app/            # Thư mục chính của ứng dụng
+├── components/     # Các thành phần UI của ứng dụng
+├── hooks/          # Custom hooks cho logic ứng dụng
+├── pages/          # Các trang chính của ứng dụng
+├── services/       # Xử lý kết nối API, Socket.io
+├── utils/          # Các hàm tiện ích
+├── ...             # Các thư mục và file khác
+└── ...
+```
+
+## Cài đặt dự án
+
+1. Clone dự án về máy tính của bạn:
+
+```bash
+git clone https://github.com/RiverNguyen/discord.git
+cd giscord
+```
+
+2. Cài đặt các thư viện cần thiết:
+
+```bash
+npm install
+```
+
+3. Khởi chạy ứng dụng:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
