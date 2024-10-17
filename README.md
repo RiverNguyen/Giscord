@@ -49,13 +49,13 @@ git clone https://github.com/RiverNguyen/discord.git
 cd giscord
 ```
 
-2. Cài đặt các thư viện cần thiết:
+2.Cài đặt các thư viện cần thiết:
 
 ```bash
 npm install
 ```
 
-3. Khởi chạy ứng dụng:
+3.Khởi chạy ứng dụng:
 
 ```bash
 npm run dev
