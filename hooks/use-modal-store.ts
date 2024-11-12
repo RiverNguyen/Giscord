@@ -2,34 +2,38 @@ import { create } from "zustand";
 import { Channel, ChannelType, Server } from "@prisma/client";
 
 export type ModalType =
-	| "createServer"
-	| "invite"
-	| "editServer"
-	| "members"
-	| "createChannel"
-	| "leaveServer"
-	| "deleteServer"
-	| "deleteChannel"
-	| "editChannel";
+  | "createServer"
+  | "invite"
+  | "editServer"
+  | "members"
+  | "createChannel"
+  | "leaveServer"
+  | "deleteServer"
+  | "deleteChannel"
+  | "editChannel"
+  | "messageFile";
 
 interface ModalData {
-	server?: Server;
-	channel?: Channel;
-	channelType?: ChannelType;
+  server?: Server;
+  channel?: Channel;
+  channelType?: ChannelType;
+  apiUrl?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query?: Record<string, any>;
 }
 
 interface ModalStore {
-	type: ModalType | null;
-	data: ModalData;
-	isOpen: boolean;
-	onOpen: (type: ModalType, data?: ModalData) => void;
-	onClose: () => void;
+  type: ModalType | null;
+  data: ModalData;
+  isOpen: boolean;
+  onOpen: (type: ModalType, data?: ModalData) => void;
+  onClose: () => void;
 }
 
 export const useModal = create<ModalStore>((set) => ({
-	type: null,
-	isOpen: false,
-	data: {},
-	onOpen: (type, data = {}) => set({ isOpen: true, type, data }),
-	onClose: () => set({ type: null, isOpen: false }),
+  type: null,
+  isOpen: false,
+  data: {},
+  onOpen: (type, data = {}) => set({ isOpen: true, type, data }),
+  onClose: () => set({ type: null, isOpen: false }),
 }));
