@@ -62,7 +62,7 @@ export const MessageFileModal = () => {
 
       form.reset();
       router.refresh();
-      onClose();
+      handleClose();
     } catch (error) {
       console.log("[SERVER_CREATE]", error);
     }
