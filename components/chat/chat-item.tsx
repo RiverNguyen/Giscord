@@ -99,7 +99,9 @@ export const ChatItem = ({
         query: socketQuery,
       });
 
-      await axios.put(url, value);
+      await axios.patch(url, value);
+      form.reset();
+      setIsEditing(false);
     } catch (error) {
       console.log("[CHAT_ITEM_UPDATE]", error);
     }
